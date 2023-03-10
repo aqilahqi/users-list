@@ -68,13 +68,13 @@
   margin-top: 90px;
   padding-bottom: 21px;
   position: relative;
-  @media (max-width: $breakpoint-md-max) {
+  @media (max-width: $breakpoint-sm-max) {
     height: 110px;
     padding-bottom: 16px;
   }
   .profile-pic {
     margin-bottom: -60px;
-    @media (max-width: $breakpoint-md-max) {
+    @media (max-width: $breakpoint-sm-max) {
       margin-bottom: -40px;
     }
   }
