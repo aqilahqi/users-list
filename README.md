@@ -1,6 +1,12 @@
-# Kiratech Users List (kiratech-users-list)
+# Users List
 
-a technical assessment to display a list of users and preview their details
+display a list of users and preview their details
+
+## What I used
+- Vue 3
+- Quasar
+- Pinia
+- Axios
 
 ## Install the dependencies
 ```bash
