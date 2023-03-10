@@ -48,10 +48,11 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { date } from "quasar";
+import { useQuasar, date, Dialog } from "quasar";
 import { useUsersStore } from "src/stores/users";
 
 const store = useUsersStore();
+const $q = useQuasar();
 const filter = ref("");
 const rows = computed(() => {
   return store.users;
@@ -106,15 +107,40 @@ const columns = ref([
 ]);
 
 function onRowClick(row) {
-  alert(`${row.name} clicked`);
+  $q.dialog({
+    title: `<span class="text-3 text-weight-bold">${row.fullname}</span>`,
+    message: `<table>
+        <tbody>
+            <tr>
+                <td><span class="text-grey-6">Date:</span></td>
+                <td><span class="q-ml-lg">${formatDate(
+                  row.registered.date
+                )}</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-grey-6">Gender:</span></td>
+                <td><span class="q-ml-lg text-capitalize">${
+                  row.gender
+                }</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-grey-6">Country:</span></td>
+                <td><span class="q-ml-lg text-capitalize">${
+                  row.location.gender
+                }</span></td>
+            </tr>
+            <tr>
+                <td><span class="text-grey-6">Email:</span></td>
+                <td><span class="q-ml-lg">${row.email}</span></td>
+            </tr>
+        </tbody>
+        </table>`,
+    html: true,
+  });
 }
 
 function formatDate(d) {
   return date.formatDate(d, "D MMM YYYY");
-}
-
-function customFilter(rows, terms) {
-  console.log(rows, terms);
 }
 </script>
 

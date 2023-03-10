@@ -2,7 +2,7 @@
   <q-page>
     <div>
       <ProfileHeader />
-      <div class="q-pa-md"><TableList /></div>
+      <div class="q-pa-md container"><TableList /></div>
     </div>
   </q-page>
 </template>

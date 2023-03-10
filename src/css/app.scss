@@ -109,6 +109,11 @@ $lg-breakpoint: 1920px;
             border-top-left-radius: 12px;
             border-bottom-left-radius: 12px;
           }
+          &:last-child {
+            border-right: 2px solid #fff !important;
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+          }
         }
 
         &:hover {
