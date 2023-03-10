@@ -79,3 +79,47 @@ $lg-breakpoint: 1920px;
 .q-btn {
   border-radius: 638;
 }
+
+.q-table--horizontal-separator thead th {
+  border-bottom-width: 0 !important;
+}
+.custom-table {
+  .q-table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    th,
+    td {
+      border: none;
+      border-bottom-width: 0 !important;
+    }
+
+    tbody {
+      tr {
+        box-shadow: 0px 4px 5px 4px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        margin: 10px;
+        transition: ease-in-out 0.3s;
+        td {
+          padding-top: 20px;
+          padding-bottom: 20px;
+          border-top: 2px solid #fff !important;
+          border-bottom: 2px solid #fff !important;
+          &:first-child {
+            border-left: 2px solid #fff !important;
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+          }
+        }
+
+        &:hover {
+          td {
+            border-color: $primary !important;
+            &.highlight {
+              color: $primary !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
