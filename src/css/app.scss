@@ -15,8 +15,8 @@ h5 {
 
 h3 {
   @media (max-width: $breakpoint-sm-max) {
-    font-size: 40px;
-    line-height: 40px;
+    font-size: 38px;
+    line-height: 38px;
   }
 }
 
@@ -74,4 +74,8 @@ $lg-breakpoint: 1920px;
   .container-xl {
     max-width: 1440px;
   }
+}
+
+.q-btn {
+  border-radius: 638;
 }
