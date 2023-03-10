@@ -44,6 +44,51 @@
       </q-tr>
     </template>
   </q-table>
+
+  <q-dialog v-model="openDialog">
+    <q-card class="q-pa-md">
+      <q-card-section class="row items-center">
+        <div class="text-h4 text-weight-bold">{{ single.fullname }}</div>
+        <q-space />
+        <q-btn icon="close" flat round dense v-close-popup color="grey-6" />
+      </q-card-section>
+
+      <q-card-section>
+        <table>
+          <tbody>
+            <tr>
+              <td><span class="text-grey-6">Date:</span></td>
+              <td>
+                <span class="q-ml-lg">{{
+                  formatDate(single.registered.date)
+                }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="text-grey-6">Gender:</span></td>
+              <td>
+                <span class="q-ml-lg text-capitalize">{{ single.gender }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="text-grey-6">Country:</span></td>
+              <td>
+                <span class="q-ml-lg text-capitalize">{{
+                  single.location.country
+                }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="text-grey-6">Email:</span></td>
+              <td>
+                <span class="q-ml-lg">{{ single.email }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </q-card-section>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script setup>
@@ -52,8 +97,9 @@ import { useQuasar, date, Dialog } from "quasar";
 import { useUsersStore } from "src/stores/users";
 
 const store = useUsersStore();
-const $q = useQuasar();
 const filter = ref("");
+const single = ref(null);
+const openDialog = ref(false);
 const rows = computed(() => {
   return store.users;
 });
@@ -107,36 +153,8 @@ const columns = ref([
 ]);
 
 function onRowClick(row) {
-  $q.dialog({
-    title: `<span class="text-3 text-weight-bold">${row.fullname}</span>`,
-    message: `<table>
-        <tbody>
-            <tr>
-                <td><span class="text-grey-6">Date:</span></td>
-                <td><span class="q-ml-lg">${formatDate(
-                  row.registered.date
-                )}</span></td>
-            </tr>
-            <tr>
-                <td><span class="text-grey-6">Gender:</span></td>
-                <td><span class="q-ml-lg text-capitalize">${
-                  row.gender
-                }</span></td>
-            </tr>
-            <tr>
-                <td><span class="text-grey-6">Country:</span></td>
-                <td><span class="q-ml-lg text-capitalize">${
-                  row.location.gender
-                }</span></td>
-            </tr>
-            <tr>
-                <td><span class="text-grey-6">Email:</span></td>
-                <td><span class="q-ml-lg">${row.email}</span></td>
-            </tr>
-        </tbody>
-        </table>`,
-    html: true,
-  });
+  single.value = row;
+  openDialog.value = true;
 }
 
 function formatDate(d) {
